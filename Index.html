@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sababa x Verborgen — Retainer Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --bone: #e8e0d0;
+    --navy: #0a1628;
+    --blue: #1a3a6b;
+    --gold: #c9a84c;
+    --warm: #d4956a;
+    --mist: #8a9ab5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 64px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-bg-text {
+    position: absolute;
+    bottom: -80px;
+    left: -20px;
+    font-family: 'Anton', sans-serif;
+    font-size: 22vw;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -4px;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .cover-line {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 48px;
+  }
+
+  .cover-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .cover-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(56px, 9vw, 120px);
+    line-height: 0.9;
+    letter-spacing: 1px;
+    max-width: 800px;
+  }
+
+  .cover-title span {
+    display: block;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.6em;
+    font-weight: 400;
+    letter-spacing: 3px;
+    margin-top: 8px;
+  }
+
+  .cover-sub {
+    margin-top: 48px;
+    font-size: 11px;
+    color: var(--mist);
+    max-width: 460px;
+    line-height: 1.9;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 64px;
+    border-bottom: 1px solid var(--bone);
+    position: relative;
+  }
+
+  section.dark {
+    background: var(--ink);
+    color: var(--paper);
+    border-bottom: none;
+  }
+
+  .label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .label.light { color: var(--mist); }
+
+  h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(32px, 4vw, 56px);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+
+  .dark h2 { color: var(--paper); }
+
+  p {
+    font-size: 12px;
+    max-width: 600px;
+    color: #444;
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+
+  .dark p { color: var(--mist); }
+
+  /* STATS BAR */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 48px 0;
+  }
+
+  .stat {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 32px 24px;
+  }
+
+  .stat-num {
+    font-family: 'Anton', sans-serif;
+    font-size: 44px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+
+  /* AESTHETIC NOTE */
+  .aesthetic-box {
+    border-left: 3px solid var(--gold);
+    padding: 24px 32px;
+    background: var(--bone);
+    margin: 40px 0;
+    max-width: 640px;
+  }
+
+  .aesthetic-box .title {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .aesthetic-box p {
+    color: #555;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  /* RETAINER TIERS */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .tier {
+    border: 1px solid var(--bone);
+    padding: 40px 28px;
+    position: relative;
+    background: white;
+  }
+
+  .tier.hero {
+    background: var(--navy);
+    color: var(--paper);
+    border-color: var(--navy);
+  }
+
+  .tier-tag {
+    position: absolute;
+    top: -11px; left: 28px;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .tier-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 36px;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .tier-price {
+    font-size: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .tier-cadence {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--bone);
+  }
+
+  .hero .tier-cadence { border-color: rgba(255,255,255,0.1); }
+
+  .tier-item {
+    font-size: 11px;
+    line-height: 1.5;
+    color: #444;
+    margin-bottom: 12px;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .tier-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero .tier-item { color: var(--mist); }
+
+  .tier-note {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--bone);
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+  }
+
+  .hero .tier-note {
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* DELIVERABLES */
+  .del-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 11px;
+  }
+
+  .del-table th {
+    text-align: left;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .del-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--bone);
+    vertical-align: top;
+    color: #444;
+  }
+
+  .del-table tr:hover td { background: var(--bone); }
+
+  .check { color: var(--blue); font-weight: 700; }
+  .extra { color: var(--gold); font-weight: 700; }
+  .none { color: #ccc; }
+
+  /* TERMS */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+  }
+
+  .term-cell {
+    background: var(--bone);
+    padding: 28px 24px;
+  }
+
+  .term-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--navy);
+  }
+
+  .term-body {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.8;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* CLOSING */
+  .closing {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::after {
+    content: 'SABABA';
+    position: absolute;
+    right: -30px; bottom: -60px;
+    font-family: 'Anton', sans-serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.03);
+    user-select: none;
+  }
+
+  .closing h2 { color: var(--paper); }
+  .closing p { color: var(--mist); max-width: 560px; }
+
+  .cta {
+    display: inline-block;
+    margin-top: 40px;
+    border: 1px solid var(--gold);
+    padding: 20px 32px;
+    max-width: 480px;
+  }
+
+  .cta .cta-label {
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .cta p {
+    font-size: 12px;
+    color: var(--paper);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .cover, section, .closing { padding: 40px 24px; }
+    .tiers, .stats, .terms-grid { grid-template-columns: 1fr; }
+    .cover-title { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-line"></div>
+    <div class="cover-eyebrow">Monthly Retainer Proposal</div>
+    <h1 class="cover-title">
+      Sababa
+      <span>x Verborgen Studios</span>
+    </h1>
+    <p class="cover-sub">
+      A long term creative partnership between two community-first brands. Built on cultural alignment, not just content output.
+    </p>
+  </div>
+  <div></div>
+  <div class="cover-footer">
+    <span>Sababa Community Brand</span>
+    <span>Confidential 2025</span>
+    <span>Monthly Retainer</span>
+  </div>
+  <div class="cover-bg-text">SABABA</div>
+</div>
+
+<!-- WHO WE ARE -->
+<section>
+  <div class="label">01 — Who We Are</div>
+  <h2>Sababa Is Not A Promo Page.</h2>
+  <p>
+    Sababa is a fashion and lifestyle community platform built over three years. We create culture-first content that moves, starts conversations and builds genuine connection between brands and people.
+  </p>
+  <p>
+    We do not do forced promotions. Everything we put in front of our community is intentional, aesthetic and aligned with who we are. That standard does not change for any partnership.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">900K+</div>
+      <div class="stat-label">Monthly Engagements</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">300K</div>
+      <div class="stat-label">Minimum on a slow month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3 Yrs</div>
+      <div class="stat-label">Building this community</div>
+    </div>
+  </div>
+
+  <div class="aesthetic-box">
+    <div class="title">A Note on Aesthetics</div>
+    <p>
+      When Verborgen product appears on Sababa, it will be styled, shot and presented the Sababa way. That means the setting, the mood and the visual treatment are decided by us. Verborgen provides the product and the brand context. Sababa handles how it looks and feels to our audience. This is not a limitation. It is the reason the content lands. Our community trusts what they see on this platform because everything looks like it belongs here. Verborgen will be no different.
+    </p>
+  </div>
+</section>
+
+<!-- WHY THIS WORKS -->
+<section class="dark">
+  <div class="label light">02 — The Alignment</div>
+  <h2>Two Brands Built The Same Way.</h2>
+  <p>
+    Verborgen is limited, intentional and community driven. Sababa is exactly that. This is not a transactional content deal. This is two brands whose values already speak the same language finding a louder voice together.
+  </p>
+  <p>
+    Verborgen wants natural promotion over time. That is the only way Sababa operates. This partnership works because neither side needs to pretend.
+  </p>
+</section>
+
+<!-- RETAINER TIERS -->
+<section>
+  <div class="label">03 — Monthly Retainer Tiers</div>
+  <h2>Three Ways To Work Together.</h2>
+  <p>All tiers are monthly. Minimum commitment is 3 months. Content is created within Sababa's aesthetic and creative direction.</p>
+
+  <div class="tiers">
+    <!-- STARTER -->
+    <div class="tier">
+      <div class="tier-name">Starter</div>
+      <div class="tier-price">£600</div>
+      <div class="tier-cadence">Per Month / Min 3 Months</div>
+      <div class="tier-item">2 dedicated posts per month on Sababa Instagram</div>
+      <div class="tier-item">1 Verborgen product featured per month</div>
+      <div class="tier-item">Story coverage tied to drops and releases</div>
+      <div class="tier-item">Tag and credit across all content</div>
+      <div class="tier-item">Content produced and styled by Sababa</div>
+      <div class="tier-note">Best for: brands testing the waters before committing deeper.</div>
+    </div>
+
+    <!-- CORE — HERO -->
+    <div class="tier hero">
+      <div class="tier-tag">Recommended</div>
+      <div class="tier-name">Core</div>
+      <div class="tier-price">£1,000</div>
+      <div class="tier-cadence">Per Month / Min 3 Months</div>
+      <div class="tier-item">4 dedicated posts per month</div>
+      <div class="tier-item">2 Verborgen product features per month</div>
+      <div class="tier-item">1 co-created piece of content per month</div>
+      <div class="tier-item">Monthly story series tied to the brand</div>
+      <div class="tier-item">1 Instagram Live session per month with Verborgen</div>
+      <div class="tier-item">Community engagement campaign each month</div>
+      <div class="tier-note">Best for: building a real cultural presence over time.</div>
+    </div>
+
+    <!-- FULL -->
+    <div class="tier">
+      <div class="tier-name">Full</div>
+      <div class="tier-price">£1,500</div>
+      <div class="tier-cadence">Per Month / Min 3 Months</div>
+      <div class="tier-item">Everything in Core tier</div>
+      <div class="tier-item">6 dedicated posts per month</div>
+      <div class="tier-item">Dedicated monthly editorial feature</div>
+      <div class="tier-item">Priority placement in all Sababa activations</div>
+      <div class="tier-item">2 Instagram Live sessions per month</div>
+      <div class="tier-item">Exclusive Sababa x Verborgen content series</div>
+      <div class="tier-note">Best for: maximum cultural positioning and community ownership.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="label">04 — Deliverables Defined</div>
+  <h2>Exactly What Each Tier Includes.</h2>
+  <p>No guesswork. Here is what is included at each level every single month.</p>
+
+  <table class="del-table">
+    <thead>
+      <tr>
+        <th>Deliverable</th>
+        <th>Description</th>
+        <th>Starter</th>
+        <th>Core</th>
+        <th>Full</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Dedicated Posts</strong></td>
+        <td>Feed posts on Sababa Instagram featuring Verborgen product within Sababa's visual world</td>
+        <td class="check">2x</td>
+        <td class="check">4x</td>
+        <td class="extra">6x</td>
+      </tr>
+      <tr>
+        <td><strong>Story Coverage</strong></td>
+        <td>Instagram Stories tied to drops, releases and brand moments</td>
+        <td class="check">Yes</td>
+        <td class="check">Yes</td>
+        <td class="extra">Priority</td>
+      </tr>
+      <tr>
+        <td><strong>Co-Created Content</strong></td>
+        <td>Content built together by both brands. Lives on both platforms.</td>
+        <td class="none">No</td>
+        <td class="check">1x</td>
+        <td class="extra">2x</td>
+      </tr>
+      <tr>
+        <td><strong>Instagram Live</strong></td>
+        <td>Joint live session hosted on Sababa. Direct community exposure for Verborgen.</td>
+        <td class="none">No</td>
+        <td class="check">1x</td>
+        <td class="extra">2x</td>
+      </tr>
+      <tr>
+        <td><strong>Editorial Feature</strong></td>
+        <td>A monthly long-form visual story around Verborgen's world, products and culture</td>
+        <td class="none">No</td>
+        <td class="none">No</td>
+        <td class="extra">1x</td>
+      </tr>
+      <tr>
+        <td><strong>Community Campaign</strong></td>
+        <td>Active audience engagement driving Sababa followers to Verborgen's page and products</td>
+        <td class="none">No</td>
+        <td class="check">Yes</td>
+        <td class="extra">Yes</td>
+      </tr>
+      <tr>
+        <td><strong>Creative Direction</strong></td>
+        <td>All content is styled, framed and executed within Sababa's aesthetic. Non-negotiable at all tiers.</td>
+        <td class="check">Yes</td>
+        <td class="check">Yes</td>
+        <td class="extra">Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TERMS -->
+<section>
+  <div class="label">05 — How This Works</div>
+  <h2>The Terms. Clear and Simple.</h2>
+
+  <div class="terms-grid">
+    <div class="term-cell">
+      <div class="term-title">Minimum Commitment</div>
+      <p class="term-body">All tiers run for a minimum of 3 months. This is a long term partnership, not a one-off. Short commitments do not build real cultural presence.</p>
+    </div>
+    <div class="term-cell">
+      <div class="term-title">Payment</div>
+      <p class="term-body">50% upfront before any content is produced. Remaining 50% at the start of month two. This is standard practice for all Sababa partnerships.</p>
+    </div>
+    <div class="term-cell">
+      <div class="term-title">Product</div>
+      <p class="term-body">Verborgen provides product for all features. Product is part of the partnership at every tier and is not included in the monthly fee.</p>
+    </div>
+    <div class="term-cell">
+      <div class="term-title">Creative Control</div>
+      <p class="term-body">All content is created within Sababa's creative direction and aesthetic. Verborgen will be consulted but Sababa retains creative ownership of execution. This is what makes the content valuable.</p>
+    </div>
+    <div class="term-cell">
+      <div class="term-title">Content Rights</div>
+      <p class="term-body">Content produced lives on Sababa's platform. Verborgen may reshare all content. Exclusive co-created content is jointly owned by both brands.</p>
+    </div>
+    <div class="term-cell">
+      <div class="term-title">Renewal</div>
+      <p class="term-body">At the end of the minimum term both parties review and decide on continuation. Rates are locked for the agreed term and renegotiated at renewal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="label light">Next Steps</div>
+  <h2>Ready When You Are.</h2>
+  <p>
+    You asked for a price and a structure. This is it. The Core tier at £1,000 per month is where the real work happens and where the community starts to associate Verborgen with Sababa's world naturally over time.
+  </p>
+  <p>
+    Pick a tier, confirm the minimum term and we can move into a contract. Simple as that.
+  </p>
+
+  <div class="cta">
+    <div class="cta-label">To Move Forward</div>
+    <p>Confirm which tier works for Verborgen and we will get a contract drafted and ready to sign.</p>
+  </div>
+</div>
+
+</body>
+</html>
